@@ -11,6 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { blogPosts } from "@/data/data";
+import { BlogCard } from "./BlogCard";
 
 export default function ArticleSection() {
   return (
@@ -19,7 +21,7 @@ export default function ArticleSection() {
         Latest articles
       </h1>
       {/* search box */}
-      <div className="bg-[#EFEEEB] items-center flex flex-col lg:flex-row mb-20 lg:mx-20 lg:justify-between lg:items-center lg:rounded-xl">
+      <div className="bg-[#EFEEEB] items-center flex flex-col lg:flex-row mb-10 lg:mx-20 lg:justify-between lg:items-center lg:rounded-xl">
         <div className="hidden lg:flex ">
           <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black ml-5">
             Button
@@ -49,6 +51,39 @@ export default function ArticleSection() {
             </SelectContent>
           </Select>
         </div>
+      </div>
+      {/* blog card */}
+      <div className="px-5 mb-20  grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <BlogCard
+          image={blogPosts[0].image}
+          category={blogPosts[0].category}
+          title={blogPosts[0].title}
+          description={blogPosts[0].description}
+          author={blogPosts[0].author}
+          date={blogPosts[0].date}
+          likes={blogPosts[0].likes}
+          content={blogPosts[0].content}
+        />
+        <BlogCard
+          image={blogPosts[1].image}
+          category={blogPosts[1].category}
+          title={blogPosts[1].title}
+          description={blogPosts[1].description}
+          author={blogPosts[1].author}
+          date={blogPosts[1].date}
+          likes={blogPosts[1].likes}
+          content={blogPosts[1].content}
+        />
+        <BlogCard
+          image={blogPosts[2].image}
+          category={blogPosts[2].category}
+          title={blogPosts[2].title}
+          description={blogPosts[2].description}
+          author={blogPosts[2].author}
+          date={blogPosts[2].date}
+          likes={blogPosts[2].likes}
+          content={blogPosts[2].content}
+        />
       </div>
     </>
   );

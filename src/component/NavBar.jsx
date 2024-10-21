@@ -1,6 +1,6 @@
 function NavBar() {
     return (
-      <nav className="flex flex-row items-center justify-between mx-auto h-[48px] p-5 border-[#DAD6D1] border sticky top-0 bg-white">
+      <nav className="flex flex-row items-center justify-between mx-auto h-[48px] p-5 border-[#DAD6D1] border sticky top-0 bg-white z-50">
         <a href="/" className="">
           <svg
             width="24"
