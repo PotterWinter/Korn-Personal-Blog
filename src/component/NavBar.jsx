@@ -2,7 +2,10 @@ function NavBar() {
     return (
       <nav className="flex flex-row items-center justify-between mx-auto h-[48px] p-5 border-[#DAD6D1] border sticky top-0 bg-white z-50">
         <a href="/" className="">
-          <svg
+        <h1 className="hidden lg:flex font-semibold font-poppins text-xl">Natthanat<span className=" text-[#12B379]">.</span></h1>
+        <h1 className="lg:hidden font-semibold font-poppins text-xl">NT<span className=" text-[#12B379]">.</span></h1>
+
+          {/* <svg
             width="24"
             height="13"
             viewBox="0 0 24 13"
@@ -21,7 +24,7 @@ function NavBar() {
               d="M22.3962 12.6122C22.0655 12.6122 21.7882 12.5002 21.5642 12.2762C21.3402 12.0522 21.2282 11.7748 21.2282 11.4442C21.2282 11.1135 21.3402 10.8362 21.5642 10.6122C21.7882 10.3882 22.0655 10.2762 22.3962 10.2762C22.7162 10.2762 22.9882 10.3882 23.2122 10.6122C23.4362 10.8362 23.5482 11.1135 23.5482 11.4442C23.5482 11.7748 23.4362 12.0522 23.2122 12.2762C22.9882 12.5002 22.7162 12.6122 22.3962 12.6122Z"
               fill="#12B379"
             />
-          </svg>
+          </svg> */}
         </a>
         <button className="md:hidden">
           <svg

@@ -15,15 +15,20 @@ import { blogPosts } from "@/data/data";
 import { BlogCard } from "./BlogCard";
 
 export default function ArticleSection() {
+  const categories = ["Highlight", "Cat", "Inspiration", "General"];
   return (
     <>
       <h1 className="font-poppins font-semibold mt-14 text-2xl text-[#43403B] lg:mx-20 my-3 px-5">
         Latest articles
       </h1>
       {/* search box */}
-      <div className="bg-[#EFEEEB] items-center flex flex-col lg:flex-row mb-10 lg:mx-20 lg:justify-between lg:items-center lg:rounded-xl">
-        <div className="hidden lg:flex ">
-          <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black ml-5">
+      <div className="bg-[#EFEEEB] items-center flex flex-col lg:flex-row mb-10 lg:mx-20 lg:justify-between lg:items-center lg:rounded-md">
+        <div className="hidden lg:flex gap-5 px-5">
+          {
+          categories.map((item) => (
+            <button className="hover:bg-[#DAD6D1] bg-[muted] text-black p-3 rounded-md " key={item} value={item}>{item} </button>
+          ))
+          /* <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black ml-5">
             Button
           </Button>
           <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black">
@@ -31,7 +36,7 @@ export default function ArticleSection() {
           </Button>
           <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black">
             Button
-          </Button>
+          </Button> */}
         </div>
         <div className="px-5 relative rounded-md lg:w-1/3 m-3 flex flex-row items-center justify-between w-full ">
           <Input className="" type="Search" placeholder="Search" />
@@ -44,17 +49,30 @@ export default function ArticleSection() {
               <SelectValue placeholder="Highligh" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Cat</SelectItem>
-              <SelectItem value="light">Cat</SelectItem>
-              <SelectItem value="light">Cat</SelectItem>
-              <SelectItem value="light">Cat</SelectItem>
+            {categories.map((item) => (
+              <SelectItem key={item} value={item}>{item}</SelectItem>
+            ))}
             </SelectContent>
           </Select>
         </div>
       </div>
       {/* blog card */}
-      <div className="px-5 mb-20  grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <BlogCard
+      <div className="px-5 mb-20  grid grid-cols-1 lg:grid-cols-2 gap-5 lg:px-20">
+        {
+        blogPosts.map((item) => (
+          <BlogCard key={item.id}
+          image={item.image}
+          category={item.category}
+          title={item.title}
+          description={item.description}
+          author={item.author}
+          date={item.date}
+          likes={item.likes}
+          content={item.content}
+        />
+        ))
+        
+        /* <BlogCard
           image={blogPosts[0].image}
           category={blogPosts[0].category}
           title={blogPosts[0].title}
@@ -83,7 +101,7 @@ export default function ArticleSection() {
           date={blogPosts[2].date}
           likes={blogPosts[2].likes}
           content={blogPosts[2].content}
-        />
+        /> */}
       </div>
     </>
   );
