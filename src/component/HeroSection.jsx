@@ -1,7 +1,7 @@
 function HeroSection() {
     return (
-      <div className="flex item-center justify-center w-full p-5">
-        <main className="flex flex-col md:flex-row items-center justify-between lg:px-5  gap-5 mt-10 md:w-5/6">
+      <div className="flex item-center justify-center lg:px-20 px-5">
+        <main className="flex flex-col md:flex-row items-center justify-between gap-5 mt-10 ">
           <div className="md:w-1/3 md:flex md:flex-col md:justify-end">
             <h1 className="text-5xl mb-5 text-center font-semibold md:text-right">
               Stay

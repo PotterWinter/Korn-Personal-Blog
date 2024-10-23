@@ -13,9 +13,10 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/data";
 import { BlogCard } from "./BlogCard";
-
+import { useState } from "react";
 export default function ArticleSection() {
   const categories = ["Highlight", "Cat", "Inspiration", "General"];
+  const [onClicking,setOnClicking] = useState(categories[0])
   return (
     <>
       <h1 className="font-poppins font-semibold mt-14 text-2xl text-[#43403B] lg:mx-20 my-3 px-5">
@@ -23,20 +24,11 @@ export default function ArticleSection() {
       </h1>
       {/* search box */}
       <div className="bg-[#EFEEEB] items-center flex flex-col lg:flex-row mb-10 lg:mx-20 lg:justify-between lg:items-center lg:rounded-md">
-        <div className="hidden lg:flex gap-5 px-5">
+        <div id="popUp" className="hidden lg:flex gap-5 px-5">
           {
           categories.map((item) => (
-            <button className="hover:bg-[#DAD6D1] bg-[muted] text-black p-3 rounded-md " key={item} value={item}>{item} </button>
-          ))
-          /* <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black ml-5">
-            Button
-          </Button>
-          <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black">
-            Button
-          </Button>
-          <Button className="hover:bg-[#DAD6D1] bg-[muted] text-black">
-            Button
-          </Button> */}
+            <button className={` bg-[muted] text-black p-3 rounded-md ${onClicking === item ? "bg-[#DAD6D1]" : "hover:bg-[#ffffffae]"}`} onClick={() => setOnClicking(item)} key={item} value={item}>{item}</button>
+          ))}
         </div>
         <div className="px-5 relative rounded-md lg:w-1/3 m-3 flex flex-row items-center justify-between w-full ">
           <Input className="" type="Search" placeholder="Search" />
@@ -72,36 +64,7 @@ export default function ArticleSection() {
         />
         ))
         
-        /* <BlogCard
-          image={blogPosts[0].image}
-          category={blogPosts[0].category}
-          title={blogPosts[0].title}
-          description={blogPosts[0].description}
-          author={blogPosts[0].author}
-          date={blogPosts[0].date}
-          likes={blogPosts[0].likes}
-          content={blogPosts[0].content}
-        />
-        <BlogCard
-          image={blogPosts[1].image}
-          category={blogPosts[1].category}
-          title={blogPosts[1].title}
-          description={blogPosts[1].description}
-          author={blogPosts[1].author}
-          date={blogPosts[1].date}
-          likes={blogPosts[1].likes}
-          content={blogPosts[1].content}
-        />
-        <BlogCard
-          image={blogPosts[2].image}
-          category={blogPosts[2].category}
-          title={blogPosts[2].title}
-          description={blogPosts[2].description}
-          author={blogPosts[2].author}
-          date={blogPosts[2].date}
-          likes={blogPosts[2].likes}
-          content={blogPosts[2].content}
-        /> */}
+        }
       </div>
     </>
   );
