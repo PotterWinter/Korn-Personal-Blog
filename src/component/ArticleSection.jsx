@@ -7,16 +7,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/data";
 import { BlogCard } from "./BlogCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function ArticleSection() {
-  const categories = ["Highlight", "Cat", "Inspiration", "General"];
-  const [onClicking,setOnClicking] = useState(categories[0])
+  const categoriesHead = ["Highlight", "Cat", "Inspiration", "General"];
+  const [categories,setCategories] = useState(categoriesHead[0])
+  const [post,setPost] = useState([])
+
+  useEffect(() => {
+    fetchData()
+  },[categories])
+  console.log(post)
+
+  const fetchData = async() => {
+    try{
+        const response = await axios.get(`https://blog-post-project-api.vercel.app/posts?${categories === `Highlight` ? null : `category=${categories}`}`)
+        console.log(categories)
+        setPost(response.data.posts)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
   return (
     <>
       <h1 className="font-poppins font-semibold mt-14 text-2xl text-[#43403B] lg:mx-20 my-3 px-5">
@@ -25,9 +42,10 @@ export default function ArticleSection() {
       {/* search box */}
       <div className="bg-[#EFEEEB] items-center flex flex-col lg:flex-row mb-10 lg:mx-20 lg:justify-between lg:items-center lg:rounded-md">
         <div id="popUp" className="hidden lg:flex gap-5 px-5">
+          {/* button */}
           {
-          categories.map((item) => (
-            <button className={` bg-[muted] text-black p-3 rounded-md ${onClicking === item ? "bg-[#DAD6D1]" : "hover:bg-[#ffffffae]"}`} onClick={() => setOnClicking(item)} key={item} value={item}>{item}</button>
+          categoriesHead.map((item) => (
+            <button className={` bg-[muted] text-black p-3 rounded-md ${categories === item ? "bg-[#DAD6D1]" : "hover:bg-[#DAD6D1]"}`} onClick={() => setCategories(item)} key={item} value={item}>{item}</button>
           ))}
         </div>
         <div className="px-5 relative rounded-md lg:w-1/3 m-3 flex flex-row items-center justify-between w-full ">
@@ -41,7 +59,7 @@ export default function ArticleSection() {
               <SelectValue placeholder="Highligh" />
             </SelectTrigger>
             <SelectContent>
-            {categories.map((item) => (
+            {categoriesHead.map((item) => (
               <SelectItem key={item} value={item}>{item}</SelectItem>
             ))}
             </SelectContent>
@@ -49,18 +67,20 @@ export default function ArticleSection() {
         </div>
       </div>
       {/* blog card */}
-      <div className="px-5 mb-20  grid grid-cols-1 lg:grid-cols-2 gap-5 lg:px-20">
+      <div className="px-5 grid grid-cols-1 lg:grid-cols-2 gap-5 lg:px-20">
         {
-        blogPosts.map((item) => (
+        post.map((item) => (
           <BlogCard key={item.id}
           image={item.image}
           category={item.category}
           title={item.title}
           description={item.description}
           author={item.author}
-          date={item.date}
+          date={new Date(item.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
           likes={item.likes}
           content={item.content}
+          id={item.id}
+          // onClick={}
         />
         ))
         
