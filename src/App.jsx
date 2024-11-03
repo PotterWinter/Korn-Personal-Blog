@@ -1,15 +1,21 @@
-import HeroSection from "./component/HeroSection";
 import NavBar from "./component/NavBar";
 import Footer from "./component/Footer";
-import ArticleSection from "./component/ArticleSection";
+import { Home } from "./page/HomePage";
+import { PostPage } from "./page/ViewPost";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
     <>
-      <NavBar/>
-      <HeroSection/>
-      <ArticleSection/>
-      <Footer/>
+    <NavBar />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/posts/:postId" element={<PostPage />} />
+      </Routes>
+    </BrowserRouter>
+    <Footer />
     </>
   );
 }
