@@ -16,7 +16,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export function PostPage() {
+export function ViewPost() {
   const { postId } = useParams();
   console.log(postId); // ตรวจสอบค่า postId
 

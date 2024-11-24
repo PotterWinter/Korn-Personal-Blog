@@ -14,6 +14,7 @@ import { blogPosts } from "@/data/data";
 import { BlogCard } from "./BlogCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 export default function ArticleSection() {
   const categoriesHead = ["Highlight", "Cat", "Inspiration", "General"];
   const [categories, setCategories] = useState(categoriesHead[0]);
@@ -26,7 +27,7 @@ export default function ArticleSection() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://blog-post-project-api.vercel.app/posts?${
+        `https://blog-post-project-api.vercel.app/posts?limit=30&${
           categories === `Highlight` ? null : `category=${categories}`
         }`
       );
